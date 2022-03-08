@@ -6,3 +6,5 @@ Let's protect it from dictators.
 
 
 First step: Putting a bounty to remove Putin from power by any mean necessary until he recalls his troops.
+
+Want to help: Send a mail to groot at airmail.cc
