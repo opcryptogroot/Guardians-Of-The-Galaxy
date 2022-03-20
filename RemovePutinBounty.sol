@@ -218,7 +218,7 @@ contract RemovePutinBounty {
         require(state == State.executed);
         require(block.timestamp < executionTime + REVEAL_TIME); // Cannot reveal more than 100 days after the execution time.
         require(keccak256(abi.encodePacked(predictedTime,salt)) == prediction.commitment); // Check that it matches the commitment.
-        require(prediction.time < executionTime - PREDICTION_ACTIVATION; // The prediction was made at least 12 hours before the action.
+        require(prediction.time < executionTime - PREDICTION_ACTIVATION); // The prediction was made at least 12 hours before the action.
         require((predictedTime > executionTime - ACTION_ERROR_MARGIN) && (predictedTime < executionTime + ACTION_ERROR_MARGIN)); // The predicted time should be less than 36 hours away from the execution time.
 
         totalPredictionShares += prediction.value; // Increase the total amount of correct prediction shares. 
