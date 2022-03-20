@@ -10,7 +10,6 @@ pragma solidity >=0.8.0 <0.9.0;
  * - The fear of harm is geniune. Putin already attacked Ukraine leading to thousands of deaths.
  * - The threat is imminent. The bounty shall be cancelled if Putin recalls its troop or if he is removed from power during a ceasefire.
  * - The response is proportional. Thousands people (in both sides) already died.
-onsible for the continuous harm.
  *   One could argue that heads of state are special and "worth" more than regular citizens, we do not share this point of view, but for those who do, Putin already tried to eliminate the president of Ukraine multiple times https://www.msn.com/en-us/news/world/volodymyr-zelensky-survives-three-assassination-attempts-in-one-week/ar-AAUBwac 
  *   The bounty only targets the individual responsible.
  *   This individual is a military target: The Supreme Commander-in-Chief of the Russian Armed Forces (https://en.wikipedia.org/wiki/Supreme_Commander-in-Chief_of_the_Russian_Armed_Forces).
