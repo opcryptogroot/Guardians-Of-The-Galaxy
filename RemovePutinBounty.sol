@@ -7,11 +7,11 @@ pragma solidity >=0.8.0 <0.9.0;
  * It is also made to incentivize Putin to stop his agression against Ukraine.
  * It is not affiliated with the state of Ukraine nor any other nation state.
  * This contract is made only as a legitimate defense mean (see a discussion on this right of legitimate defense: https://scholarship.law.cornell.edu/cgi/viewcontent.cgi?article=2562&context=facpub).
- * - The fear of harm is geniune. Putin already attacked Ukraine leading to thousands of death.
+ * - The fear of harm is geniune. Putin already attacked Ukraine leading to thousands of deaths.
  * - The threat is imminent. The bounty shall be cancelled if Putin recalls its troop or if he is removed from power during a ceasefire.
  * - The response is proportional. Thousands people (in both sides) already died.
 onsible for the continuous harm.
- *   One could argue that head of state are special and "worth" more than regular citizens, we do not share this point of view, but for those who do, Putin already tried to eliminate the president of Ukraine multiple times https://www.msn.com/en-us/news/world/volodymyr-zelensky-survives-three-assassination-attempts-in-one-week/ar-AAUBwac 
+ *   One could argue that heads of state are special and "worth" more than regular citizens, we do not share this point of view, but for those who do, Putin already tried to eliminate the president of Ukraine multiple times https://www.msn.com/en-us/news/world/volodymyr-zelensky-survives-three-assassination-attempts-in-one-week/ar-AAUBwac 
  *   The bounty only targets the individual responsible.
  *   This individual is a military target: The Supreme Commander-in-Chief of the Russian Armed Forces (https://en.wikipedia.org/wiki/Supreme_Commander-in-Chief_of_the_Russian_Armed_Forces).
  *   The bounty is neutral about whether violence should be used or not (any mean to remove him from power would fullfill the bounty).
@@ -118,7 +118,7 @@ contract RemovePutinBounty {
     struct Prediction { 
         address payable predictor; // The predictor which would be paid.
         uint value; // The amount paid by the predictor.
-        uint time; // The time the prediction was made. Should be at least 48h before the action.
+        uint time; // The time the prediction was made. Should be at least 12h before the action.
         bytes32 commitment; // keccak256(timestamp,salt), where timestamp is the predicted time of the action and salt a random value.
     }
     Prediction[] public predictions;
@@ -151,7 +151,7 @@ contract RemovePutinBounty {
      * This can be used by:
      * - Russians planning to remove Putin from power. Because they will be the ones doing the action, they should know the date in advance and get the payout.
      * - Anyone who believe they know when Putin would be removed from power.
-     * - Anyone wanting to contribute. Contributing this way increases privacy as it makes it hard for external observers to distinguishes between contributors and predictors. It also allows predictors to claim they are only making predictions and not participate in a bounty.
+     * - Anyone wanting to contribute. Contributing this way increases privacy as it makes it hard for external observers to distinguishes between contributors and predictors. It also allows predictors to claim they are only making predictions and not participating in a bounty.
      * @param commitment A commitment of the timestamp where Putin would be removed from power: keccak256(timestamp,salt) where timestamp is the time of removal and the salt a random value.
      */
     function predictRemoval(bytes32 commitment) external payable {
@@ -241,7 +241,7 @@ contract RemovePutinBounty {
 
     /**
      * @dev Withdraw prediction payout.
-     * Need to wait at least 100 days after the exection time to let the time for everyone to withdraw.
+     * Need to wait at least 100 days after the exection time to let the time for everyone to reveal.
      */
     function withdraw() external {
         require(state == State.executed);
