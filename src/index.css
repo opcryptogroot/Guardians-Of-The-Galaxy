@@ -59,3 +59,10 @@ section {
   color: black
 }
 
+.blockquote {
+  padding: 0.5rem 1rem;
+  border-left: 0.25rem solid #6c757d;
+  border-left-width: 0.25rem;
+  border-left-style: solid;
+  border-left-color: rgb(108, 117, 125);
+}
