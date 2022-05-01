@@ -4,19 +4,16 @@ const MetaMaskOnboarding = require('@metamask/onboarding')
 const flatpickr = require('flatpickr')
 const bootstrap = require('bootstrap')
 const { contractAddress } = require('./utils/constants.json')
-const { DataTable } = require('simple-datatables')
 
 // -----------⬇⬇ AUTHORIAL DEVELOPMENT LIBRARIES ⬇⬇ -----------
 const utils = require('./utils/price-utils') // Library for Fetching ETH Price
 const wepgen = require('./utils/wepgen') // Library for WEP 256-bit key generation
-const ethFilter = require('./utils/eth-filter') // Library to Fetch for historical data on Ethereum
 const blobUtils = require('./utils/download-blob') // Library for formating BLOB for download
 
 const contractABI = [{ inputs: [], stateMutability: 'nonpayable', type: 'constructor' }, { anonymous: false, inputs: [{ indexed: true, internalType: 'address', name: 'owner', type: 'address' }, { indexed: true, internalType: 'address', name: 'spender', type: 'address' }, { indexed: false, internalType: 'uint256', name: 'value', type: 'uint256' }], name: 'Approval', type: 'event' }, { anonymous: false, inputs: [{ indexed: true, internalType: 'address', name: 'from', type: 'address' }, { indexed: true, internalType: 'address', name: 'to', type: 'address' }, { indexed: false, internalType: 'uint256', name: 'value', type: 'uint256' }], name: 'Transfer', type: 'event' }, { inputs: [], name: 'ACTION_ERROR_MARGIN', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'PREDICTION_ACTIVATION', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'REDEEM_TIME', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'REVEAL_TIME', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'address', name: '', type: 'address' }, { internalType: 'address', name: '', type: 'address' }], name: 'allowance', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'address', name: 'spender', type: 'address' }, { internalType: 'uint256', name: 'amount', type: 'uint256' }], name: 'approve', outputs: [{ internalType: 'bool', name: '', type: 'bool' }], stateMutability: 'nonpayable', type: 'function' }, { inputs: [{ internalType: 'address', name: '', type: 'address' }], name: 'balanceOf', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'cancel', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'cancelNoWinner', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'cancellationTime', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }], name: 'changeOwner', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'decimals', outputs: [{ internalType: 'uint8', name: '', type: 'uint8' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'executionTime', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'uint256', name: 'time', type: 'uint256' }, { internalType: 'uint256', name: 'salt', type: 'uint256' }], name: 'getCommitment', outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }], stateMutability: 'pure', type: 'function' }, { inputs: [], name: 'name', outputs: [{ internalType: 'string', name: '', type: 'string' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'owner', outputs: [{ internalType: 'address', name: '', type: 'address' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'bytes32', name: 'commitment', type: 'bytes32' }], name: 'predictRemoval', outputs: [], stateMutability: 'payable', type: 'function' }, { inputs: [{ internalType: 'address', name: '', type: 'address' }], name: 'predictionShares', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], name: 'predictions', outputs: [{ internalType: 'address payable', name: 'predictor', type: 'address' }, { internalType: 'uint256', name: 'value', type: 'uint256' }, { internalType: 'uint256', name: 'time', type: 'uint256' }, { internalType: 'bytes32', name: 'commitment', type: 'bytes32' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'redeem', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [{ internalType: 'uint256', name: 'time', type: 'uint256' }], name: 'report', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }, { internalType: 'uint256', name: 'predictedTime', type: 'uint256' }, { internalType: 'uint256', name: 'salt', type: 'uint256' }], name: 'reveal', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'state', outputs: [{ internalType: 'enum RemovePutinBounty.State', name: '', type: 'uint8' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'symbol', outputs: [{ internalType: 'string', name: '', type: 'string' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'totalBounty', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'totalPredictionShares', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [], name: 'totalSupply', outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }], stateMutability: 'view', type: 'function' }, { inputs: [{ internalType: 'address', name: 'recipient', type: 'address' }, { internalType: 'uint256', name: 'amount', type: 'uint256' }], name: 'transfer', outputs: [{ internalType: 'bool', name: '', type: 'bool' }], stateMutability: 'nonpayable', type: 'function' }, { inputs: [{ internalType: 'address', name: 'sender', type: 'address' }, { internalType: 'address', name: 'recipient', type: 'address' }, { internalType: 'uint256', name: 'amount', type: 'uint256' }], name: 'transferFrom', outputs: [{ internalType: 'bool', name: '', type: 'bool' }], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'withdraw', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { inputs: [], name: 'withdrawRemaining', outputs: [], stateMutability: 'nonpayable', type: 'function' }, { stateMutability: 'payable', type: 'receive' }]
 
 const initialize = () => {
   // ------------- ⬇⬇ TOP PAGE LABELS ⬇⬇ -------------
-  const bountyLabel = document.getElementById('bounty')
   const bountyLabelUSD = document.getElementById('bounty-usd')
   const contractStatus = document.getElementById('contractStatus')
 
@@ -39,7 +36,6 @@ const initialize = () => {
   const closeReceiptSucceded = document.getElementById('closeSucessNote')
 
   // ------------- ⬇⬇ TABLE AND CALENDAR ⬇⬇ -------------
-  const myTable = document.getElementById('predicts')
   const myCalendar = document.getElementById('calendar')
 
   let data
@@ -50,18 +46,6 @@ const initialize = () => {
     enableTime: true,
     minuteIncrement: 1
   })
-
-  const dataTable = new DataTable(myTable, {
-    perPageSelect: false,
-    perPage: 15
-  })
-
-  const fillTableData = async () => {
-    const tableData = await ethFilter.writeData()
-    dataTable.insert(tableData)
-  }
-
-  fillTableData()
 
   // ------------- ⬇⬇ ENABLING METAMASK ⬇⬇ -------------
   // Created check function to see if the MetaMask extension is installed
@@ -183,8 +167,13 @@ const initialize = () => {
           status = 'Contract Not Implemented'
         }
 
-        bountyLabel.innerHTML = `${parseInt(balance) / 10 ** 18} ETH`
-        bountyLabelUSD.innerHTML = `${(ethPrice * parseInt(balance) / 10 ** 18).toFixed()} USD`
+        function numberWithSpaces(x) {
+          var parts = x.toString().split(".");
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          return parts.join(".");
+      }
+
+        bountyLabelUSD.innerHTML = `${numberWithSpaces((ethPrice * parseInt(balance) / 10 ** 18).toFixed())} USD`
         contractStatus.innerHTML = status
       } catch (e) {
         console.log(`ERROR: ${e}`)
@@ -213,7 +202,7 @@ const initialize = () => {
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       const parentDiv = downloadReceipt.parentNode
       // Replacing downloadReceipt button with blob'd element
-      parentDiv.replaceChild(blobUtils.downloadBlob(blob, 'data.json'), downloadReceipt)
+      parentDiv.replaceChild(blobUtils.downloadBlob(blob, 'prediction.json'), downloadReceipt)
       createPredict.disabled = true
     } else {
       // This error modal pops up if user tries to create predict
@@ -259,6 +248,7 @@ const initialize = () => {
 
   sendContribution.onclick = async () => {
     const accounts = await ethereum.request({ method: 'eth_accounts' })
+    if(donationValue.value < 0.0001) {alert("Invalid Input Detected! ETH Contribution is too low!");return;}
     await web3.eth.sendTransaction({
       from: accounts[0],
       to: contractAddress,

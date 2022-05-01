@@ -26,7 +26,6 @@
     "fs": "^0.0.1-security",
     "git-commit-msg-linter": "^4.1.2",
     "parcel": "^2.5.0",
-    "simple-datatables": "^3.2.0",
     "standard": "^17.0.0",
     "static-server": "^2.2.1",
     "util": "^0.12.4",

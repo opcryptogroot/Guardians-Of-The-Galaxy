@@ -1,5 +1,21 @@
+body {
+  color:#00c851;
+  background-color: black;
+  font-family: monospace;
+}
+
 section {
   margin: 20px 0 20px 0;
+}
+
+
+.modal-content {
+  background-color: #2e2e2e;
+}
+
+.btn.btn-lg {
+  padding: 0.89rem 2.4rem;
+  font-size: .94rem;
 }
 
 .info-text {
@@ -12,5 +28,30 @@ section {
 
 .h4-align {
   text-align: center;
+}
+
+.img-fluid {
+  max-width: 10%;
+}
+
+.alert-primary {
+  color: #00c851;
+  background-color: #3c3c3c;
+  border-color: #3c3c3c;
+}
+
+.alert-secondary {
+  color: #00c851;
+  background-color: #3c3c3c;
+  border-color: #3c3c3c;
+}
+
+.html{
+  font-family: sans-serif
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #00c851 !important;
 }
 
