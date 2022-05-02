@@ -12,7 +12,7 @@ Want to help: Send a mail to groot at airmail.cc
 
 ### Quick Start the Remove Putin DAPP
 
-A live version of the DAPP can be found [HERE](https://gotg-vol-01-5q396ifxj-hashedpip.vercel.app/)
+A live version of the DAPP can be found [HERE](https://guardians-of-the-galaxy.vercel.app/)
 
 📄 Clone or fork `Guardians-Of-The-Galaxy`:
 
