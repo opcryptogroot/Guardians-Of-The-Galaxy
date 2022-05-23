@@ -66,3 +66,23 @@ section {
   border-left-style: solid;
   border-left-color: rgb(108, 117, 125);
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00c851 #3c3c3c;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3c3c3c;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #00c851;
+  border-radius: 20px;
+  border: 3px solid #3c3c3c;
+}
