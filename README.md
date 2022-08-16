@@ -30,10 +30,10 @@ yarn install
 🚴‍♂️ Run your App:
 
 ```sh
-yarn run serve
+yarn run dev
 ```
 
-A static server will start and be served at http://localhost:9011
+A static server will start and be served at http://localhost:3000
 
 🚚 Building the project for distribution:
 
