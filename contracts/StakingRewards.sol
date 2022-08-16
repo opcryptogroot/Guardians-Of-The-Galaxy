@@ -35,8 +35,6 @@ contract Owned {
     event OwnerNominated(address newOwner);
     event OwnerChanged(address oldOwner, address newOwner);
 }
-pragma solidity ^0.5.16;
-
 
 // https://docs.synthetix.io/contracts/source/contracts/rewardsdistributionrecipient
 contract RewardsDistributionRecipient is Owned {
