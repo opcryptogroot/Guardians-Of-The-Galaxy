@@ -1,0 +1,36 @@
+.warning {
+  width: 100%;
+  max-width: 700px;
+  height: 210px;
+  background: rgba(15, 15, 15, 1);
+  border: 1.5px solid rgba(41, 255, 50, 1);
+  border-radius: 10px;
+  z-index: 2;
+
+  .closeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+
+    span {
+      padding-left: 10px;
+      color: rgba(41, 255, 50, 1);
+      font-size: 30px;
+      margin-top: 0;
+      text-transform: uppercase;
+    }
+
+    img {
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+  }
+
+  .content {
+    padding-left: 40px;
+    text-transform: uppercase;
+    color: rgba(108, 117, 125, 1);
+    letter-spacing: 2px;
+  }
+}

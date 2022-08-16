@@ -1,0 +1,57 @@
+.centerContainer {
+  display: flex;
+  justify-content: center;
+  padding-left: 40px;
+
+  @media screen and (max-width: 1420px) {
+    padding-right: 40px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1300px;
+    color: white;
+
+    .contentContainer {
+      li {
+        margin-left: -12px;
+      }
+
+      .titleRow {
+        display: flex;
+
+        .title {
+          color: var(--green);
+          font-size: 28px;
+        }
+
+        .titleSubtitle {
+          color: var(--grey);
+          margin-top: 13px;
+          margin-left: 7px;
+          font-size: 14px;
+        }
+      }
+
+      .secondaryTitle {
+        font-size: 20px;
+      }
+
+      .text {
+        color: var(--green);
+
+        a {
+          color: rgb(0, 140, 255);
+          text-decoration: none;
+        }
+      }
+
+      .textSubtitle {
+        color: var(--grey);
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+    }
+  }
+}

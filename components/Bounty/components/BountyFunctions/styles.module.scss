@@ -1,0 +1,141 @@
+.container {
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+
+  @media screen and (max-width: 1450px) {
+    max-width: 600px;
+    margin-bottom: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .firstBoxContainer {
+    display: flex;
+    flex-direction: column;
+    border: solid var(--green) 1px;
+    border-radius: 8px;
+    padding: 16px;
+    gap: 8px;
+    margin-bottom: 30px;
+
+    .title {
+      color: var(--green);
+    }
+
+    .info {
+      color: white;
+    }
+
+    .contributed {
+      display: flex;
+    }
+
+    .bounty {
+      display: flex;
+    }
+  }
+
+  .secondBoxContainer {
+    display: flex;
+    flex-direction: column;
+    border: solid var(--green) 1px;
+    border-radius: 8px;
+    padding: 16px;
+    gap: 8px;
+
+    .title {
+      color: var(--green);
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .contTitle {
+      color: var(--green);
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .subtitle {
+      color: var(--grey);
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .input {
+      padding: 8px;
+      border-radius: 8px;
+      background-color: var(--secondgrey);
+      color: var(--grey);
+      font-size: 12px;
+
+      input {
+        background-color: var(--secondgrey);
+        border: none;
+        width: 100%;
+        outline: none;
+        color: var(--grey);
+        font-family: inherit;
+        font-size: 12px;
+      }
+    }
+
+    .button {
+      cursor: pointer;
+      margin-top: 6px;
+      border: inherit;
+      border-radius: inherit;
+      padding: 12px;
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.4s ease-in-out;
+
+      &:hover {
+        background-color: rgba(41, 255, 50, 1);
+        color: black;
+      }
+    }
+
+    .pressedbutton {
+      cursor: pointer;
+      margin-top: 6px;
+      border: inherit;
+      border-radius: inherit;
+      padding: 12px;
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+      background-color: rgb(70, 170, 75);
+      color: black;
+    }
+
+    .datePickerContainer {
+      .datePicker {
+        background-color: var(--secondgrey);
+        border: none;
+        width: 100%;
+        outline: none;
+        color: var(--grey);
+        font-family: inherit;
+        font-size: 12px;
+        height: 32px;
+        padding: 10px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
