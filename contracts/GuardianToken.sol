@@ -90,7 +90,7 @@ contract GuardianToken {
      */
     function mint(address account, uint256 amount) external isOwner {
         totalSupply += amount;
-        balances[account] += amount;
+        balanceOf[account] += amount;
         emit Transfer(address(0), account, amount);
     }
 
