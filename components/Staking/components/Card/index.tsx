@@ -1,62 +1,60 @@
-import Image from 'next/image'
-import React, { useContext, useEffect, useState } from 'react'
-import { PopupContext } from '../../../../contexts/popup'
+import { useContext, useEffect, useState } from "react";
 import { BountyContext } from "../../../../contexts/BountyProvider";
-import { GuardContext } from '../../../../contexts/GuardProvider';
+import { GuardContext } from "../../../../contexts/GuardProvider";
+import { PopupContext } from "../../../../contexts/popup";
 import { Web3ModalContext } from "../../../../contexts/Web3ModalProvider";
 
-import styles from './styles.module.scss'
+import styles from "./styles.module.scss";
 
 type CardProps = {
-  isSet: boolean,
-  logo: any,
-  cryptoasset: string,
-  myRewards: string,
-  totalStaked: string,
-  deposits: string,
-  daily: string,
-  totalRewards: string,
-  apr: string
-}
+  isSet: boolean;
+  logo: any;
+  cryptoasset: string;
+  myRewards: string;
+  totalStaked: string;
+  deposits: string;
+  daily: string;
+  totalRewards: string;
+  apr: string;
+};
 
-const Card = ({...props}: CardProps) => {
-  const { setOpenedPopup, setRewards, setAsset, setBalance } = useContext(PopupContext);
+const Card = ({ ...props }: CardProps) => {
+  const { setOpenedPopup, setRewards, setAsset, setBalance } =
+    useContext(PopupContext);
 
   const { account, chainId } = useContext(Web3ModalContext);
   const { bountyWrapper: PBTY } = useContext(BountyContext);
   const { guardWrapper: GUARD } = useContext(GuardContext);
 
-  const [ buttonState, setButtonState ] = useState('Approve');
-
+  const [buttonState, setButtonState] = useState("Approve");
 
   useEffect(() => {
     if (!account) {
       return;
     }
 
-    switch(props.cryptoasset) {
-      case 'GUARD':
+    switch (props.cryptoasset) {
+      case "GUARD":
         GUARD?.allowance().then((res) => {
           const allowance = res;
-          if (Number(allowance).toString() === '0') {
+          if (Number(allowance).toString() === "0") {
             return;
           } else {
-            setButtonState('Deposit');
+            setButtonState("Deposit");
           }
         });
         break;
-      case 'PBTY':
+      case "PBTY":
         PBTY?.allowance().then((res) => {
           const allowance = res;
-          if (Number(allowance).toString() === '0') {
+          if (Number(allowance).toString() === "0") {
             return;
           } else {
-            setButtonState('Deposit');
+            setButtonState("Deposit");
           }
         });
         break;
     }
-
   });
 
   return (
@@ -64,54 +62,56 @@ const Card = ({...props}: CardProps) => {
       <div className={styles.header}>
         <div className={styles.name}>
           <div className={styles.text}>
-            <Image className={styles.image} src={props.logo} alt='Logo' />
-              &nbsp;{props.cryptoasset}
+            <img src={"/images/" + props.logo} alt="Logo" />
+            {props.cryptoasset}
           </div>
           <div className={styles.textMobile}>
-            &nbsp;<Image src={props.logo} alt='Logo' />
+            <img src={"/images/" + props.logo} alt="Logo" />
           </div>
           <div className={styles.divisor}>
             <div className={styles.line} />
           </div>
         </div>
         <div className={styles.action}>
-          {props.isSet == true ?
-          <div className={styles.firstAction}>
-            <div
-              className={styles.claimDivisor}
-              onClick={() => {
-                setAsset(props.cryptoasset);
-                setRewards(props.myRewards);
-                setOpenedPopup("ConfirmClaim");
-              }}
-            >
-              <div className={styles.line} />
+          {props.isSet == true ? (
+            <div className={styles.firstAction}>
+              <div
+                className={styles.claimDivisor}
+                onClick={() => {
+                  setAsset(props.cryptoasset);
+                  setRewards(props.myRewards);
+                  setOpenedPopup("ConfirmClaim");
+                }}
+              >
+                <div className={styles.line} />
+              </div>
+              <div
+                className={styles.claim}
+                onClick={() => {
+                  setAsset(props.cryptoasset);
+                  setRewards(props.myRewards);
+                  setOpenedPopup("ConfirmClaim");
+                }}
+              >
+                Claim
+              </div>
+              <div
+                className={styles.claimMobile}
+                onClick={() => {
+                  setAsset(props.cryptoasset);
+                  setRewards(props.myRewards);
+                  setOpenedPopup("ConfirmClaim");
+                }}
+              >
+                Claim
+              </div>
             </div>
-            <div
-              className={styles.claim}
-              onClick={() => {
-                setAsset(props.cryptoasset);
-                setRewards(props.myRewards);
-                setOpenedPopup("ConfirmClaim");
-              }}
-            >
-              Claim
-            </div>
-            <div
-              className={styles.claimMobile}
-              onClick={() => {
-                setAsset(props.cryptoasset);
-                setRewards(props.myRewards);
-                setOpenedPopup("ConfirmClaim");
-              }}
-            >
-              Claim
-            </div>
-          </div>
-          : null}
+          ) : null}
           <div className={styles.secondAction}>
             <div
-              className={props.isSet == true ? styles.divisor : styles.divisorDisabled}
+              className={
+                props.isSet == true ? styles.divisor : styles.divisorDisabled
+              }
               onClick={() => {
                 setAsset(props.cryptoasset);
                 setBalance(props.totalStaked);
@@ -127,22 +127,23 @@ const Card = ({...props}: CardProps) => {
                   setAsset(props.cryptoasset);
                   setBalance(props.totalStaked);
                   setOpenedPopup("ConfirmWithdraw");
-                }  else if (buttonState === 'Approve') {
-                  switch(props.cryptoasset) {
-                    case 'GUARD':
+                } else if (buttonState === "Approve") {
+                  switch (props.cryptoasset) {
+                    case "GUARD":
                       GUARD?.approve();
                       break;
-                    case 'PBTY':
+                    case "PBTY":
                       PBTY?.approve();
-                       break;
+                      break;
                   }
-                } else if (buttonState === 'Deposit') {
+                } else if (buttonState === "Deposit") {
                   setAsset(props.cryptoasset);
                   setOpenedPopup("ConfirmDeposit");
                 }
               }}
-            > {props.isSet == true ?
-                'Withdraw' : buttonState}              
+            >
+              {" "}
+              {props.isSet == true ? "Withdraw" : buttonState}
             </div>
             <div
               className={styles.textMobile}
@@ -151,57 +152,53 @@ const Card = ({...props}: CardProps) => {
                   setAsset(props.cryptoasset);
                   setBalance(props.totalStaked);
                   setOpenedPopup("ConfirmWithdraw");
-                } else if (buttonState === 'Approve') {
-                  switch(props.cryptoasset) {
-                    case 'GUARD':
+                } else if (buttonState === "Approve") {
+                  switch (props.cryptoasset) {
+                    case "GUARD":
                       GUARD?.approve();
                       break;
-                    case 'PBTY':
+                    case "PBTY":
                       PBTY?.approve();
-                       break;
+                      break;
                   }
-                } else if (buttonState === 'Deposit') {
+                } else if (buttonState === "Deposit") {
                   setAsset(props.cryptoasset);
                   setOpenedPopup("ConfirmDeposit");
                 }
               }}
             >
-              {props.isSet == true ?
-                'Wit..' : `${buttonState.slice(0,3)}..`}             
+              {props.isSet == true ? "Wit.." : `${buttonState.slice(0, 3)}..`}
             </div>
           </div>
         </div>
       </div>
       <div className={styles.content}>
-        {props.isSet == true ?
-        <div>
-        <div className={styles.infos1}>
-          <div className={styles.text}>
-            my reward balance: <span>{props.myRewards}</span> GUARD
-          </div>
-        </div>
+        {props.isSet == true ? (
+          <div>
+            <div className={styles.infos1}>
+              <div className={styles.text}>
+                my reward balance: <span>{props.myRewards}</span> GUARD
+              </div>
+            </div>
 
-        <div className={styles.infos2}>
-          <div className={styles.text}>
-            my staked balance: <span>{props.totalStaked}</span> {props.cryptoasset}
+            <div className={styles.infos2}>
+              <div className={styles.text}>
+                my staked balance: <span>{props.totalStaked}</span>{" "}
+                {props.cryptoasset}
+              </div>
+            </div>
           </div>
-        </div>
-        </div>
-        : 
-        <div>
-        <div className={styles.infos1}>
-          <div className={styles.text}>
-            
-          </div>
-        </div>
+        ) : (
+          <div>
+            <div className={styles.infos1}>
+              <div className={styles.text}></div>
+            </div>
 
-        <div className={styles.infos2}>
-          <div className={styles.text}>
-          
+            <div className={styles.infos2}>
+              <div className={styles.text}></div>
+            </div>
           </div>
-        </div>
-        </div>
-        }
+        )}
         <div className={styles.row}>
           <div className={styles.text}>TOTAL {props.cryptoasset} STAKED:</div>
           <div className={styles.value}>{props.deposits}</div>
@@ -223,7 +220,7 @@ const Card = ({...props}: CardProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
