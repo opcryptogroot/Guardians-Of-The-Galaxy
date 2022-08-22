@@ -103,7 +103,7 @@ const BountyContent = () => {
 
           <div className={styles.text}>
             Predictions are made with a commit and reveal scheme. This means that predictions 
-            are kept private until they are revealed to prevent people from copying others&apos;predictions. As part of making a contribution, predictors will receive a prediction 
+            are kept private until they are revealed to prevent people from copying others&apos; predictions. As part of making a contribution, predictors will receive a prediction 
             file that they should keep safely as it will be required to reveal the prediction.
           </div>
 
