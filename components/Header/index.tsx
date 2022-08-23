@@ -63,7 +63,7 @@ const Header: React.FC = () => {
       headerContainer &&
       mobile
     ) {
-      document.getElementsByTagName("body")[0].style.overflow = "hidden";
+      document.getElementsByTagName("body")[0].style.overflow = "visible";
       firstLine.style.transform = "rotate(45deg)";
       firstLine.style.top = "8px";
 
