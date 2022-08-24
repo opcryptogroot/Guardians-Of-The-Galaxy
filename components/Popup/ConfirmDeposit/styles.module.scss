@@ -44,6 +44,22 @@
       }
     }
 
+    .maxerText {
+      margin-top: -30px;
+      margin-left: 420px;
+      display: flex;
+      width: 20%;
+      justify-content: flex-end;
+      text-transform: uppercase;
+      color: rgba(41, 255, 50, 1);
+      letter-spacing: 2px;
+      cursor: pointer;
+
+      @media screen and (max-width: 650px) {
+        margin-left: 220px;
+      }
+    }
+
     input {
       margin-top: 15px;
       width: 88%;

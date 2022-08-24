@@ -22,11 +22,19 @@ export default class GuardWrapper {
         this.Contract = new Guard(this.wrapperOptions, guardianToken.Contract[this.chainId]);
     }
 
+    async balanceOf() : Promise<unknown> {
+        try {
+            const balance = await this.Contract.call("balanceOf", this.account);
+            return balance;
+        } catch (error) { 
+            throw error;
+        }
+    }
 
     async approve() {
-        const value = '100000';
+        const value = '115792089237316195423570985008687907853269984665640564039457584007913129639935'; //(2^256 - 1 )
         try {
-            const tx = await this.Contract.send("approve", {from: this.account}, stakingAddress.stakingGUARD[this.chainId], this.web3.utils.toWei(value, 'ether'));
+            const tx = await this.Contract.send("approve", {from: this.account}, stakingAddress.stakingGUARD[this.chainId], value);
             console.log(tx);
         } catch (error) {
             throw error;

@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BountyContext } from "../../../../contexts/BountyProvider";
 import { GuardContext } from "../../../../contexts/GuardProvider";
 import { PopupContext } from "../../../../contexts/popup";
 import { Web3ModalContext } from "../../../../contexts/Web3ModalProvider";
+import { StakingStatusContext } from "../../../../contexts/StakingStatusUpdate";
 
 import styles from "./styles.module.scss";
 
@@ -25,6 +26,7 @@ const Card = ({ ...props }: CardProps) => {
   const { account, chainId } = useContext(Web3ModalContext);
   const { bountyWrapper: PBTY } = useContext(BountyContext);
   const { guardWrapper: GUARD } = useContext(GuardContext);
+  const { stakingStatusUpdated, setStakingStatusUpdated } = useContext(StakingStatusContext);
 
   const [buttonState, setButtonState] = useState("Approve");
 
@@ -130,10 +132,22 @@ const Card = ({ ...props }: CardProps) => {
                 } else if (buttonState === "Approve") {
                   switch (props.cryptoasset) {
                     case "GUARD":
-                      GUARD?.approve();
+                      GUARD?.approve().then(() => {
+                        if(stakingStatusUpdated) {
+                          setStakingStatusUpdated(false);
+                        } else {
+                          setStakingStatusUpdated(true);
+                        }
+                      });
                       break;
                     case "PBTY":
-                      PBTY?.approve();
+                      PBTY?.approve().then(() => {
+                        if(stakingStatusUpdated) {
+                          setStakingStatusUpdated(false);
+                        } else {
+                          setStakingStatusUpdated(true);
+                        }
+                      });
                       break;
                   }
                 } else if (buttonState === "Deposit") {
@@ -155,10 +169,22 @@ const Card = ({ ...props }: CardProps) => {
                 } else if (buttonState === "Approve") {
                   switch (props.cryptoasset) {
                     case "GUARD":
-                      GUARD?.approve();
+                      GUARD?.approve().then(() => {
+                        if(stakingStatusUpdated) {
+                          setStakingStatusUpdated(false);
+                        } else {
+                          setStakingStatusUpdated(true);
+                        }
+                      });
                       break;
                     case "PBTY":
-                      PBTY?.approve();
+                      PBTY?.approve().then(() => {
+                        if(stakingStatusUpdated) {
+                          setStakingStatusUpdated(false);
+                        } else {
+                          setStakingStatusUpdated(true);
+                        }
+                      });
                       break;
                   }
                 } else if (buttonState === "Deposit") {

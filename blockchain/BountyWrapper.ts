@@ -22,10 +22,19 @@ export default class BountyWrapper {
         this.Contract = new Bounty(this.wrapperOptions, putinBountyToken.Contract[this.chainId]);
     }
 
-    async approve() {
-        const value = '100000';
+    async balanceOf() : Promise<unknown> {
         try {
-            const tx = await this.Contract.send("approve", {from: this.account}, stakingAddress.stakingPBTY[this.chainId], this.web3.utils.toWei(value, 'ether'));
+            const balance = await this.Contract.call("balanceOf", this.account);
+            return balance;
+        } catch (error) { 
+            throw error;
+        }
+    }
+
+    async approve() {
+        const value = '115792089237316195423570985008687907853269984665640564039457584007913129639935'; //(2^256 - 1 )
+        try {
+            const tx = await this.Contract.send("approve", {from: this.account}, stakingAddress.stakingPBTY[this.chainId], value);
             console.log(tx);
         } catch (error) {
             throw error;
