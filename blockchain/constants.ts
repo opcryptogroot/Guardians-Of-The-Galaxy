@@ -23,12 +23,14 @@ export const putinBountyToken = {
 
 export const guardianToken = {
   Contract: {
+    1: '0x5CfA3e8276196c481A42264dDD3745eB27B762B8',
     5: '0xb71A9711217ebCA3C91C466b54a2816c774A5255',
   },
 }
 
 export const stakingAddress = { // PBTY staking contract address
   stakingPBTY: {
+    1: '0x5Bc49183Cb5DE71D9Ea9D6163e114E87F74c03c5',
     5: '0xD1B3c689A90AB6077ef3DF29c60744b1135FB242',
   },
   stakingGUARD: {

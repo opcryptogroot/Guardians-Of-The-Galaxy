@@ -37,11 +37,11 @@ const BlockchainProviders = (props: any) => {
     <Web3ModalProvider>
       <BountyProvider>
         <GuardProvider>
-          <GuardStakingProvider>
+          {/* <GuardStakingProvider> */}
             <StakingProvider>
               {props.children}
             </StakingProvider>
-          </GuardStakingProvider>      
+          {/* </GuardStakingProvider> */}      
         </GuardProvider>
       </BountyProvider>
     </Web3ModalProvider>
