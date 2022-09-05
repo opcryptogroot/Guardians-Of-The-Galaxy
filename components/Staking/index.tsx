@@ -109,7 +109,7 @@ const Content = () => {
             />
           </div>
           <div className={styles.right}>
-            <Card
+{/*             <Card
               logo={"Guard.svg"}
               cryptoasset="GUARD"
               myRewards={myGuardRewards}
@@ -122,7 +122,7 @@ const Content = () => {
                 Number(guardStakedBalance)
               ).toFixed()}
               isSet={guardActive}
-            />
+            /> */}
           </div>
         </div>
       </div>

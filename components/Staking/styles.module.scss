@@ -31,7 +31,7 @@
       grid-auto-columns: minmax(auto, 1fr);
       width: 90%;
 
-      @media screen and (max-width: 1200px) {
+      @media screen and (max-width: 1920px) { // Default value is 1200 when 2 or more cards are enabled!
         grid-template-areas: "left" "right";
       }
 

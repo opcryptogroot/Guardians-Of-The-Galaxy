@@ -7,7 +7,7 @@ import { NotificationManager } from "react-notifications";
 const Header: React.FC = () => {
   const router = useRouter();
   const [windowSize, setWindowSize] = useState(0);
-  const { connect, disconnect, account } = useContext(Web3ModalContext);
+  const { connect, disconnect, account, chainId } = useContext(Web3ModalContext);
 
   function ellipseAddress(address: string = "", width: number = 2): string {
     return `${address.slice(0, width + 2)}...${address.slice(-width)}`;
@@ -36,6 +36,19 @@ const Header: React.FC = () => {
       checkbox.checked = false;
     }
   }, [windowSize]);
+
+  useEffect(() => {
+    if(chainId !== null && chainId !== 1) {
+      try {
+          window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x1" }],
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [chainId, account]);
 
   const toggleMenu = (checkboxValue: boolean) => {
     if (checkboxValue === true) {
